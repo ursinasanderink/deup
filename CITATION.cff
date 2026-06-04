@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software and the original DEUP paper."
+title: "deup: Direct Epistemic Uncertainty Prediction"
+abstract: >-
+  A scikit-learn-compatible implementation of Direct Epistemic Uncertainty
+  Prediction (DEUP) with first-class, leakage-correct support for time-series and
+  cross-sectional workflows.
+type: software
+authors:
+  - family-names: Sanderink
+    given-names: Ursina
+repository-code: "https://github.com/sinsasanderink/deup"
+license: Apache-2.0
+keywords:
+  - epistemic uncertainty
+  - DEUP
+  - uncertainty quantification
+  - scikit-learn
+  - time-series
+references:
+  - type: article
+    title: "DEUP: Direct Epistemic Uncertainty Prediction"
+    authors:
+      - family-names: Lahlou
+        given-names: Salem
+      - family-names: Jain
+        given-names: Moksh
+      - family-names: Nekoei
+        given-names: Hadi
+      - family-names: Butoi
+        given-names: Victor Ion
+      - family-names: Bertin
+        given-names: Paul
+      - family-names: Rector-Brooks
+        given-names: Jarrid
+      - family-names: Korablyov
+        given-names: Maksym
+      - family-names: Bengio
+        given-names: Yoshua
+    journal: "Transactions on Machine Learning Research"
+    year: 2023
+    url: "https://openreview.net/forum?id=eGLdVRvvfQ"
