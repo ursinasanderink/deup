@@ -9,9 +9,10 @@ Includes the two gates from the plan:
 from __future__ import annotations
 
 import numpy as np
+import pytest
 from sklearn.base import clone
 from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.model_selection import KFold
+from sklearn.model_selection import KFold, RepeatedKFold
 from sklearn.neighbors import KNeighborsRegressor
 
 from deup.core import OOFErrorCollector
@@ -119,3 +120,38 @@ def test_rank_loss_with_group_coherent_walk_forward() -> None:
     ).fit_collect(X, y, groups=dates)
     assert res.group_ids is not None
     assert np.all((res.errors >= 0) & (res.errors <= 1))
+
+
+def test_multiclass_proba_brier_path() -> None:
+    """Multiclass predict_proba must not crash and must store 2-D predictions."""
+    rng = np.random.default_rng(11)
+    X = rng.normal(size=(300, 4))
+    logits = X @ rng.normal(size=(4, 3))
+    y = logits.argmax(axis=1)
+    res = OOFErrorCollector(
+        LogisticRegression(max_iter=500),
+        cv=KFold(n_splits=5, shuffle=True, random_state=0),
+        loss="brier",
+        proba=True,
+    ).fit_collect(X, y)
+    assert res.predictions.ndim == 2
+    assert res.predictions.shape[1] == 3
+    assert np.all(res.errors >= 0)
+    assert res.n == len(y)
+
+
+def test_overlapping_folds_warns_and_keeps_one_error_per_row() -> None:
+    X, y = _make_regression(n=120)
+    cv = RepeatedKFold(n_splits=3, n_repeats=2, random_state=0)
+    with pytest.warns(UserWarning, match="multiple test folds"):
+        res = OOFErrorCollector(LinearRegression(), cv=cv).fit_collect(X, y)
+    # one error per row despite rows being tested in every repeat
+    assert res.n == len(y)
+
+
+def test_groups_length_mismatch_raises() -> None:
+    X, y = _make_regression(n=50)
+    with pytest.raises(ValueError, match="groups length"):
+        OOFErrorCollector(LinearRegression(), cv=KFold(n_splits=3)).fit_collect(
+            X, y, groups=np.arange(10)
+        )

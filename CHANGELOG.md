@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.1] — 2026-06-04
+
+First release published to PyPI.
+
+### Fixed
+
+- `OOFErrorCollector` now supports multiclass `predict_proba` targets (previously
+  only binary worked; multiclass stored 2-D probabilities and crashed).
+- Guard against rows assigned to multiple test folds (e.g. repeated CV): a warning
+  is raised and one error per row is kept, preserving honest OOF targets.
+- Validate `groups` length against `n_rows` and the loss output length.
+
+### Added
+
+- Research-grade docstrings documenting the "g trained on a slightly smaller f"
+  refit assumption (DEUP Algorithm 2) plus a "How it works" docs section.
+
 ## [0.1.0] — 2026-06-04
 
 First public release.
@@ -20,4 +37,5 @@ First public release.
 - Aleatoric decomposition (`ê = max(0, g - a)`), conformal intervals, and
   `DEUPClassifier` / `DEUPRanker` are planned for v0.2.
 
+[0.1.1]: https://github.com/ursinasanderink/deup/releases/tag/v0.1.1
 [0.1.0]: https://github.com/ursinasanderink/deup/releases/tag/v0.1.0

@@ -16,4 +16,4 @@ from __future__ import annotations
 from deup.estimators import DEUPRegressor
 
 __all__ = ["DEUPRegressor", "__version__"]
-__version__ = "0.1.0"
+__version__ = "0.1.1"

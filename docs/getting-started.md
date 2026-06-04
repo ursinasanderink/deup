@@ -93,6 +93,29 @@ model = DEUPRegressor(target_transform="asinh")
 model = DEUPRegressor(target_transform="none")
 ```
 
+## How it works (and the refit assumption)
+
+DEUP fits two models:
+
+1. **Base model `f`** — predicts `y` from `x` (your existing model).
+2. **Error predictor `g`** — predicts how wrong `f` is at `x`.
+
+The subtle part is generating honest training targets for `g`. If you trained `g` on
+the residuals of an `f` that had already *seen* those rows, the residuals would be
+optimistically small and `g` would systematically **under**-estimate uncertainty —
+the canonical DEUP failure mode (Lahlou et al., 2023, Sec. 3.2). `deup` avoids this
+with leakage-correct out-of-fold collection (`OOFErrorCollector`, the paper's
+Algorithm 2): for each CV fold a fresh clone of `f` is fit on the train rows and used
+to predict the *held-out* rows, so every error target is genuinely out-of-sample.
+
+By default the collector then refits `f` on **all** data for deployment. So `g` is
+trained on the errors of fold models `f₋ₖ` (each fit on a strict subset) but paired at
+inference with the full-data `f`. This is the standard DEUP / stacking assumption:
+`g` describes the error of a *slightly smaller* model. For reasonable fold counts the
+gap is small; under walk-forward the fold models are legitimately smaller (expanding
+window), which is the realistic operating regime. Pass `refit_on_all=False` (or a
+pre-fit estimator) if you want to disable the final refit.
+
 ## What v0.1 includes / excludes
 
 **Included:** `DEUPRegressor`, leakage-correct OOF collection, splitters
