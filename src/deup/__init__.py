@@ -13,5 +13,7 @@ Lahlou, Jain, Nekoei, Butoi, Bertin, Rector-Brooks, Korablyov, and Bengio (2023)
 
 from __future__ import annotations
 
-__all__ = ["__version__"]
+from deup.estimators import DEUPRegressor
+
+__all__ = ["DEUPRegressor", "__version__"]
 __version__ = "0.0.1.dev0"

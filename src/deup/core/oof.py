@@ -113,5 +113,6 @@ class OOFErrorCollector:
             errors=errors,
             fold_ids=fold_ids[mask],
             group_ids=g_groups,
+            indices=np.flatnonzero(mask),
             estimator=estimator_,
         )

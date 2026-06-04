@@ -70,6 +70,8 @@ python_version = "3.10"
 strict = true
 files = ["src/deup"]
 warn_unused_configs = true
+# scikit-learn ships no type stubs; subclassing its mixins is unavoidable here.
+disallow_subclassing_any = false
 
 [[tool.mypy.overrides]]
 module = ["sklearn.*"]

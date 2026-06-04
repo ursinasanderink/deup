@@ -35,6 +35,9 @@ class OOFResult:
     group_ids:
         Optional per-row group label (e.g. a date for cross-sectional ranking).
         ``None`` for i.i.d. data.
+    indices:
+        Optional positions of these rows in the original input ``X`` (the rows that
+        received an out-of-fold prediction). ``None`` if not tracked.
     estimator:
         Optionally, the base model refit on all data for deployment. ``None`` if
         the caller chose not to refit.
@@ -44,6 +47,7 @@ class OOFResult:
     errors: npt.NDArray[Any]
     fold_ids: npt.NDArray[Any]
     group_ids: npt.NDArray[Any] | None = None
+    indices: npt.NDArray[Any] | None = None
     estimator: Any = field(default=None)
 
     def __post_init__(self) -> None:
@@ -61,11 +65,13 @@ class OOFResult:
                 f"predictions={preds.shape[0]}, errors={errs.shape[0]}, "
                 f"fold_ids={folds.shape[0]}"
             )
-        if self.group_ids is not None:
-            groups = np.asarray(self.group_ids)
-            object.__setattr__(self, "group_ids", groups)
-            if groups.shape[0] != n:
-                raise ValueError(f"group_ids length {groups.shape[0]} != n_rows {n}")
+        for name in ("group_ids", "indices"):
+            value = getattr(self, name)
+            if value is not None:
+                arr = np.asarray(value)
+                object.__setattr__(self, name, arr)
+                if arr.shape[0] != n:
+                    raise ValueError(f"{name} length {arr.shape[0]} != n_rows {n}")
 
     @property
     def n(self) -> int:

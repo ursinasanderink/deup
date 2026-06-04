@@ -2,8 +2,9 @@
 
 **Direct Epistemic Uncertainty Prediction (DEUP) for any scikit-learn model — with first-class, leakage-correct time-series support.**
 
-> ⚠️ **Pre-release (v0.0.1.dev).** The API below is the v0.1 target. This repo is
-> currently scaffolding; follow along as the v0.1 critical path lands.
+> ⚠️ **Pre-release (v0.0.1.dev).** `DEUPRegressor` and the leakage-correct
+> out-of-fold core work today; calibration, classification/ranking, and the
+> uncertainty-quality benchmarks are still landing on the v0.1 path.
 
 DEUP estimates *epistemic* uncertainty by training a secondary **error predictor** on
 your model's **out-of-sample** errors — no ensembles, no Bayesian retraining, works
