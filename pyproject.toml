@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "deup"
-version = "0.0.1.dev0"
+version = "0.1.0"
 description = "Direct Epistemic Uncertainty Prediction (DEUP) for any scikit-learn model, with first-class time-series support."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -21,7 +21,7 @@ keywords = [
     "time-series",
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",

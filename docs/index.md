@@ -1,0 +1,39 @@
+# deup
+
+**Direct Epistemic Uncertainty Prediction for any scikit-learn model.**
+
+DEUP (Lahlou et al., 2023) estimates *epistemic* uncertainty by training a secondary
+**error predictor** on your model's **out-of-sample** errors. This library provides a
+maintained, installable, scikit-learn-compatible implementation with first-class
+support for time-series and cross-sectional workflows.
+
+```bash
+pip install deup
+```
+
+```python
+from sklearn.ensemble import RandomForestRegressor
+from deup import DEUPRegressor
+
+model = DEUPRegressor(base_model=RandomForestRegressor())
+model.fit(X_train, y_train)
+pred, unc = model.predict(X_test, return_uncertainty=True)
+```
+
+## Why deup?
+
+- **Works with models you already use** — RandomForest, LightGBM, linear models, etc.
+- **Leakage-correct by default** — out-of-fold errors, not in-sample residuals
+- **Time-series ready** — `PurgedWalkForward` with embargo for walk-forward panels
+- **Benchmarked** — see [Benchmarks](benchmarks.md)
+
+## Attribution
+
+DEUP the *method* is due to Lahlou, Jain, Nekoei, Butoi, Bertin, Rector-Brooks,
+Korablyov, and Bengio (2023, TMLR). This package is an independent library
+implementation; please cite both the paper and this software (`CITATION.cff`).
+
+## Next steps
+
+- [Getting started](getting-started.md) — install, fit, interpret uncertainty
+- [Losses & transforms](losses.md) — squared, Brier, pinball, rank, log/asinh targets

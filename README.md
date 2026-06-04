@@ -2,9 +2,9 @@
 
 **Direct Epistemic Uncertainty Prediction (DEUP) for any scikit-learn model — with first-class, leakage-correct time-series support.**
 
-> ⚠️ **Pre-release (v0.0.1.dev).** `DEUPRegressor` and the leakage-correct
-> out-of-fold core work today; calibration, classification/ranking, and the
-> uncertainty-quality benchmarks are still landing on the v0.1 path.
+[![PyPI](https://img.shields.io/pypi/v/deup)](https://pypi.org/project/deup/)
+[![CI](https://github.com/ursinasanderink/deup/actions/workflows/ci.yml/badge.svg)](https://github.com/ursinasanderink/deup/actions/workflows/ci.yml)
+[![Docs](https://img.shields.io/badge/docs-mkdocs-blue)](https://ursinasanderink.github.io/deup/)
 
 DEUP estimates *epistemic* uncertainty by training a secondary **error predictor** on
 your model's **out-of-sample** errors — no ensembles, no Bayesian retraining, works
@@ -12,18 +12,9 @@ with the model you already use. The method is due to
 [Lahlou et al., 2023 (TMLR)](https://openreview.net/forum?id=eGLdVRvvfQ); this package
 is a maintained, installable, scikit-learn-compatible implementation of it.
 
-Repository: <https://github.com/ursinasanderink/deup>
+Repository: <https://github.com/ursinasanderink/deup> · Docs: <https://ursinasanderink.github.io/deup/>
 
-## Why this exists
-
-The only public DEUP code is a 3-year-old research repo of notebooks; no maintained
-`pip`-installable package exists, and the major UQ libraries
-(`torch-uncertainty`, `uncertainty-toolbox`, `MAPIE`) don't implement DEUP. `deup`
-fills that gap, and adds the thing those libraries don't have: **correct out-of-fold
-error construction for time-series / cross-sectional data**, where naive
-implementations silently leak and overstate accuracy.
-
-## Quickstart (v0.1 target API)
+## Quickstart
 
 ```python
 from sklearn.ensemble import RandomForestRegressor
@@ -48,17 +39,27 @@ model = DEUPRegressor(base_model=my_model, cv=PurgedWalkForward(embargo=5))
 ```bash
 pip install deup            # core (numpy + scikit-learn)
 pip install "deup[gbm]"     # + LightGBM error predictor
-pip install "deup[torch]"   # + neural error predictor / GP variance features
+pip install "deup[docs]"    # + MkDocs site locally
 ```
+
+## Why this exists
+
+The only public DEUP code is a 3-year-old research repo of notebooks; no maintained
+`pip`-installable package existed until now. Major UQ libraries
+(`torch-uncertainty`, `uncertainty-toolbox`, `MAPIE`) don't implement DEUP. `deup`
+fills that gap with **correct out-of-fold error construction** for time-series /
+cross-sectional data.
+
+On California housing (v0.1 benchmark), DEUP uncertainty ranks test errors better
+than ensemble disagreement or a conformal residual baseline — see [BENCHMARKS.md](BENCHMARKS.md).
 
 ## Status / roadmap
 
-v0.1 (in progress): leakage-correct out-of-fold errors (KFold / TimeSeriesSplit /
-PurgedWalkForward), `DEUPRegressor` with the ergonomic API above, one benchmark
-notebook (DEUP vs. conformal / ensembles / MC-dropout), docs site.
+**v0.1 (released):** `DEUPRegressor`, OOF collector, splitters, full loss registry
+(squared / Brier / pinball / rank), target transforms (log / asinh), benchmark, docs.
 
-Later: classification & ranking, conformal-calibrated intervals, density/GP features,
-aggregation-reliability diagnostics, domain presets (finance / vision).
+**v0.2:** `DEUPClassifier` / `DEUPRanker`, conformal intervals, aleatoric decomposition,
+density/GP features, aggregation-reliability diagnostics.
 
 ## Citing
 

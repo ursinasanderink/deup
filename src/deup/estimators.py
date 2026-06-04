@@ -29,6 +29,7 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 from sklearn.model_selection import KFold
 from sklearn.utils.validation import check_is_fitted
 
+from deup.core.losses import TargetTransform, apply_error_transform, inverse_error_transform
 from deup.core.oof import OOFErrorCollector, _safe_index
 
 
@@ -48,12 +49,14 @@ class DEUPRegressor(RegressorMixin, MetaEstimatorMixin, BaseEstimator):
         (e.g. :class:`deup.splitters.PurgedWalkForward` for time series).
     loss:
         Error-target loss passed to the collector (``"squared"`` by default).
+    target_transform:
+        Stabilization for ``g``'s regression target: ``"log"`` (default),
+        ``"asinh"``, or ``"none"``.
     log_target:
-        If ``True`` (default), ``g`` regresses ``log(error + error_eps)`` and the
-        prediction is exponentiated back, stabilizing heavy-tailed errors and
-        guaranteeing non-negative uncertainty.
+        Deprecated alias for ``target_transform="log"``. If ``False``, sets
+        ``target_transform="none"`` unless ``target_transform`` is explicitly given.
     error_eps:
-        Stabilizer added inside the log transform.
+        Stabilizer for ``log`` / ``asinh`` transforms.
     random_state:
         Seed used when ``cv`` is an int (a shuffled ``KFold``).
 
@@ -74,6 +77,7 @@ class DEUPRegressor(RegressorMixin, MetaEstimatorMixin, BaseEstimator):
         cv: Any = 5,
         loss: Any = "squared",
         *,
+        target_transform: TargetTransform | None = None,
         log_target: bool = True,
         error_eps: float = 1e-6,
         random_state: int | None = None,
@@ -82,6 +86,10 @@ class DEUPRegressor(RegressorMixin, MetaEstimatorMixin, BaseEstimator):
         self.error_model = error_model
         self.cv = cv
         self.loss = loss
+        if target_transform is not None:
+            self.target_transform: TargetTransform = target_transform
+        else:
+            self.target_transform = "log" if log_target else "none"
         self.log_target = log_target
         self.error_eps = error_eps
         self.random_state = random_state
@@ -103,9 +111,7 @@ class DEUPRegressor(RegressorMixin, MetaEstimatorMixin, BaseEstimator):
 
         assert oof.indices is not None  # collector always records indices
         g_X = _safe_index(X, oof.indices)
-        target = oof.errors
-        if self.log_target:
-            target = np.log(target + self.error_eps)
+        target = apply_error_transform(oof.errors, method=self.target_transform, eps=self.error_eps)
 
         self.error_model_ = clone(err)
         self.error_model_.fit(g_X, target)
@@ -129,5 +135,5 @@ class DEUPRegressor(RegressorMixin, MetaEstimatorMixin, BaseEstimator):
         """Return the estimated epistemic uncertainty ``g(x)`` (>= 0)."""
         check_is_fitted(self, "error_model_")
         raw = np.asarray(self.error_model_.predict(X), dtype=float)
-        unc = np.exp(raw) - self.error_eps if self.log_target else raw
+        unc = inverse_error_transform(raw, method=self.target_transform, eps=self.error_eps)
         return np.clip(unc, 0.0, None)

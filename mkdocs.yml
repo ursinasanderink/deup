@@ -1,0 +1,49 @@
+site_name: deup
+site_url: https://ursinasanderink.github.io/deup/
+repo_url: https://github.com/ursinasanderink/deup
+repo_name: ursinasanderink/deup
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - content.code.copy
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: numpy
+            show_source: false
+            members_order: source
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Losses & transforms: losses.md
+  - Benchmarks: benchmarks.md
+  - API:
+      - DEUPRegressor: api/estimators.md
+      - Splitters: api/splitters.md
+      - Core: api/core.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true

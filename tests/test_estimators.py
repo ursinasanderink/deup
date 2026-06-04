@@ -97,9 +97,12 @@ def test_sklearn_clone_and_params() -> None:
 
 def test_log_vs_raw_target_both_nonnegative() -> None:
     X, y = _make_data(n=200)
-    for log_target in (True, False):
+    for transform in ("log", "asinh", "none"):
         m = DEUPRegressor(
-            base_model=LinearRegression(), cv=4, log_target=log_target, random_state=0
+            base_model=LinearRegression(),
+            cv=4,
+            target_transform=transform,
+            random_state=0,
         ).fit(X, y)
         unc = m.predict_epistemic(X)
         assert np.all(unc >= 0.0)
