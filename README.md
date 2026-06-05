@@ -101,7 +101,13 @@ TorchUncertainty integration.
 
 ## Citing
 
-Cite this software ([`CITATION.cff`](CITATION.cff)) **and** Lahlou et al. (2023).
+Cite this software ([`CITATION.cff`](CITATION.cff)), Lahlou *et al.* (2023) for the
+DEUP method, and Sanderink (2026) for cross-sectional ranking and aggregation-
+reliability extensions:
+
+> Sanderink, U. (2026) 'When Alpha Breaks: Two-Level Uncertainty for Safe Deployment of
+> Cross-Sectional Stock Rankers', *arXiv preprint* arXiv:2603.13252. Available at:
+> https://arxiv.org/pdf/2603.13252 (Accessed: 4 June 2026).
 
 ## License
 

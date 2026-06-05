@@ -5,7 +5,7 @@
   "n_batches": 30,
   "n_per_batch": 800,
   "auroc_agg_g_oracle": 1.0,
-  "auroc_agg_g_vision_deup": 0.0,
+  "auroc_agg_g_vision_deup": 0.018633540372670815,
   "thesis_reference": {
     "split": "FINAL",
     "n_batches": 95,

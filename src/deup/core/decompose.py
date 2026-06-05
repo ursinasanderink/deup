@@ -3,15 +3,15 @@
 This module turns the raw error estimate ``g(x)`` into a reported epistemic signal:
 
 - :func:`decompose_epistemic` — ``e_hat(x) = max(0, g(x) - a(x))`` (Lahlou et al.,
-  2023, Eq. 9, with the non-negativity clip used in the thesis).
+  2023, Eq. 9, with the non-negativity clip used in Sanderink, 2026).
 - :class:`RankResidualizer` — removes mechanical rank-geometry coupling from a
-  cross-sectional signal (RESEARCH_FINDINGS Finding 3). Required for rankers, where
+  cross-sectional signal (Sanderink, 2026, Finding 3). Required for rankers, where
   ``g`` / the loss target can be partly explained by the within-group rank of the
   model score rather than genuine error.
 - :func:`coupling_retention_report` — quantifies coupling reduction and loss-association
   retention before/after residualization.
 - :func:`density_kill_criterion` — drops density features that add no signal beyond
-  geometry (Finding 3 corollary), with an explicit keep/kill flag.
+  geometry (Sanderink, 2026, Finding 3 corollary), with an explicit keep/kill flag.
 """
 
 from __future__ import annotations

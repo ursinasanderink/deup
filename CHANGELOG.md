@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+## [0.4.2] — 2026-06-05
+
+### Changed
+
+- Harvard-style citations for Sanderink (2026) in theory, reliability, and related docs.
+- `CITATION.cff` includes the cross-sectional ranking paper reference.
+
 ## [0.4.1] — 2026-06-05
 
 ### Changed
@@ -88,6 +95,8 @@ superseded by v0.1.1).
 
 - `DEUPRegressor`, `OOFErrorCollector`, splitters, loss registry, California housing benchmark, MkDocs site.
 
+[0.4.2]: https://github.com/ursinasanderink/deup/releases/tag/v0.4.2
+[0.4.1]: https://github.com/ursinasanderink/deup/releases/tag/v0.4.1
 [0.4.0]: https://github.com/ursinasanderink/deup/releases/tag/v0.4.0
 [0.3.2]: https://github.com/ursinasanderink/deup/releases/tag/v0.3.2
 [0.3.1]: https://github.com/ursinasanderink/deup/releases/tag/v0.3.1

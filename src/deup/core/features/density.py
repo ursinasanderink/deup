@@ -19,7 +19,7 @@ def _diagonal_gaussian_log_prob(
     mu: npt.NDArray[Any],
     log_sigma2: npt.NDArray[Any],
 ) -> npt.NDArray[Any]:
-    """Closed-form diagonal-Gaussian log-density (thesis ``GaussianDensity.log_prob``).
+    """Closed-form diagonal-Gaussian log-density (Sanderink, 2026, ``GaussianDensity.log_prob``).
 
     log p(x) = -0.5 * sum_d [(x_d - mu_d)^2 / sigma2_d + log sigma2_d]
                - D/2 * log(2*pi)
@@ -39,7 +39,7 @@ class DensityFeature(BaseEstimator, TransformerMixin):
     Parameters
     ----------
     method:
-        ``"mahalanobis"`` — diagonal Gaussian MLE (Lee et al. 2018 / thesis default).
+        ``"mahalanobis"`` — diagonal Gaussian MLE (Lee et al. 2018; Sanderink, 2026 default).
         ``"knn"`` — ``-log(d_k + eps)`` where ``d_k`` is the k-th NN distance.
         ``"kde"`` — sklearn ``KernelDensity`` with Gaussian kernel.
         ``"flow"`` — normalizing flow (requires ``pip install "deup[torch]"``).

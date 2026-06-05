@@ -57,12 +57,12 @@ e_hat = decompose_epistemic(error_estimate, a)   # max(0, g - a)
 
 $\hat{e}$ is always non-negative.
 
-## Rank-geometry residualization (Finding 3)
+## Rank-geometry residualization (Finding 3; Sanderink, 2026)
 
 For cross-sectional rankers, $g$ and the loss target can be partly **mechanical rank
-geometry** rather than genuine error. `RankResidualizer` fits an isotonic map from the
-within-group rank of $|score|$ to the signal and subtracts it, leaving the part *not*
-explained by rank geometry.
+geometry** rather than genuine error (Sanderink, 2026, Finding 3). `RankResidualizer`
+fits an isotonic map from the within-group rank of $|score|$ to the signal and
+subtracts it, leaving the part *not* explained by rank geometry.
 
 ```python
 from deup.core import RankResidualizer, coupling_retention_report
@@ -76,16 +76,16 @@ report = coupling_retention_report(g_values, score, loss, groups=dates)
 print(report.coupling_before, report.coupling_after, report.retention)
 ```
 
-!!! note "Empirical motivation"
+!!! note "Empirical motivation (Sanderink, 2026)"
     Residualization decoupled the signal (per-date $\rho(\hat{e}, |score|)$:
     $0.616 \to 0.317$) while **retaining ~92.5%** of the loss association. This is
     **off by default** and **on in `DEUPRanker`** (P7).
 
-## Density kill criterion (Finding 3 corollary)
+## Density kill criterion (Finding 3 corollary; Sanderink, 2026)
 
-Density features can be an **informative null** in homogeneous universes. The kill
-criterion drops them when their gain importance is negligible **and** they barely move
-the loss partial-correlation.
+Density features can be an **informative null** in homogeneous universes (Sanderink,
+2026). The kill criterion drops them when their gain importance is negligible **and**
+they barely move the loss partial-correlation.
 
 ```python
 from deup.core import density_kill_criterion

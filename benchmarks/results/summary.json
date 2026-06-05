@@ -8,6 +8,5 @@
   ],
   "figures": [
     "n_sweep.png"
-  ],
-  "generated_by": "benchmarks/run_all.py"
+  ]
 }

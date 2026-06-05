@@ -42,15 +42,16 @@ from deup.core import OOFErrorCollector, ErrorEstimator, FeaturePipeline
 from deup import DEUPRegressor
 ```
 
-## Aggregation guard (Finding 1)
+## Aggregation guard (Finding 1; Sanderink, 2026)
 
 Individual-level `g(x)` is reliable across domains. **Context-level** `mean(g)` is only
-trustworthy at high N with exchangeable errors. See
+trustworthy at high N with exchangeable errors (Sanderink, 2026, Finding 1). See
 [When is aggregated DEUP reliable?](reliability.md) and the
 [N-sweep benchmark](benchmarks.md).
 
 For low-N / non-i.i.d. (finance, time-series), use
-[`HealthIndex`](api/diagnostics.md) instead of raw `mean(g)`.
+[`HealthIndex`](api/diagnostics.md) instead of raw `mean(g)` (Sanderink, 2026,
+Finding 2).
 
 ## Further reading
 

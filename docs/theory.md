@@ -1,9 +1,10 @@
 # Theory & mathematics
 
 This page summarizes the DEUP framework as defined by Lahlou *et al.* (2023,
-[TMLR](https://arxiv.org/abs/2102.08501)) and the risk decomposition used in this
-library. The implementation follows **Algorithm 2** (K-fold pre-fill of the error
-dataset) for honest out-of-sample error targets.
+[TMLR](https://arxiv.org/abs/2102.08501)) and extensions for cross-sectional ranking,
+aggregation reliability, and two-level deployment from Sanderink (2026). The
+implementation follows **Algorithm 2** (K-fold pre-fill of the error dataset) for
+honest out-of-sample error targets.
 
 ## Risk decomposition
 
@@ -145,10 +146,11 @@ $$
 
 `DensityFeature(method="mahalanobis")` implements this closed-form estimator.
 
-!!! note "Finding 3 — density can be null"
+!!! note "Finding 3 — density can be null (Sanderink, 2026)"
     In homogeneous tabular/finance universes, density features may add **no signal**
     beyond rank geometry. Treat density as **optional and ablatable**; rank-geometry
-    residualization (P6) is required for cross-sectional rankers.
+    residualization (P6) is required for cross-sectional rankers (Sanderink, 2026,
+    Finding 3).
 
 ## Mapping to library objects
 
@@ -168,25 +170,29 @@ flowchart LR
 `deup`'s ranking support (`DEUPRanker`, rank loss, rank-geometry residualization)
 extends DEUP from regression/classification to **cross-sectional ranking** by
 predicting *rank displacement* and defining an epistemic signal $\hat{e}$ relative to
-a point-in-time (PIT-safe) baseline. Two empirical findings motivate the library design:
+a point-in-time (PIT-safe) baseline (Sanderink, 2026). Two empirical findings from
+that work motivate the library design:
 
-- **Rank-geometry coupling.** $\hat{e}$ is structurally coupled with signal strength
+- **Rank-geometry coupling (Finding 3).** $\hat{e}$ is structurally coupled with signal strength
   (median per-date correlation between $\hat{e}$ and $|\text{score}|$ ≈ 0.6), so naive
   inverse-uncertainty sizing de-levers the strongest signals. This motivates the
   optional rank-geometry residualization in
-  [`RankResidualizer`](decomposition.md).
+  [`RankResidualizer`](decomposition.md) (Sanderink, 2026).
 - **Two-level deployment.** Uncertainty is best used as (i) a strategy-level
   regime-trust gate deciding *whether to trade* and (ii) a position-level **tail-risk
   cap** — i.e. DEUP adds value mainly as a tail-risk guard rather than a continuous
-  sizing denominator. This informs the aggregation-reliability diagnostics.
+  sizing denominator (Sanderink, 2026). This informs the aggregation-reliability
+  diagnostics (Findings 1–2; see [Reliability](reliability.md)).
 
 ## References
 
 - Lahlou, Jain, Nekoei, Butoi, Bertin, Rector-Brooks, Korablyov, Bengio (2023).
   *DEUP: Direct Epistemic Uncertainty Prediction.* TMLR.
   [arXiv:2102.08501](https://arxiv.org/abs/2102.08501)
-- Cross-sectional ranking / aggregation reliability (optional finance background):
-  [arXiv:2603.13252](https://arxiv.org/abs/2603.13252)
+- Sanderink, U. (2026) 'When Alpha Breaks: Two-Level Uncertainty for Safe Deployment
+  of Cross-Sectional Stock Rankers', *arXiv preprint* arXiv:2603.13252. Available at:
+  [https://arxiv.org/pdf/2603.13252](https://arxiv.org/pdf/2603.13252) (Accessed: 4 June
+  2026).
 - Kotelevskii *et al.* (2025a). Bregman-divergence excess risk (formal cover for DEUP).
 - Lee *et al.* (2018). Mahalanobis OOD score (diagonal Gaussian special case).
 - Hüllermeier & Waegeman (2019). Aleatoric vs epistemic uncertainty survey.

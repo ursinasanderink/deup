@@ -10,41 +10,41 @@
       "regime": "iid",
       "split": "DEV",
       "n_per_context": 50,
-      "n_contexts": 400,
-      "auroc_agg_g": 0.8296666666666667,
-      "spearman_agg_g_vs_error": 0.6058478641159691
+      "n_contexts": 4000,
+      "auroc_agg_g": 0.6657853333333332,
+      "spearman_agg_g_vs_error": 0.3252711350994802
     },
     {
       "regime": "iid",
       "split": "DEV",
       "n_per_context": 200,
-      "n_contexts": 400,
-      "auroc_agg_g": 0.8708,
-      "spearman_agg_g_vs_error": 0.7213983194922118
+      "n_contexts": 1000,
+      "auroc_agg_g": 0.7772746666666666,
+      "spearman_agg_g_vs_error": 0.5917874013812242
     },
     {
       "regime": "iid",
       "split": "DEV",
       "n_per_context": 1000,
-      "n_contexts": 80,
-      "auroc_agg_g": 0.9475,
-      "spearman_agg_g_vs_error": 0.8379594269624292
+      "n_contexts": 200,
+      "auroc_agg_g": 0.9072,
+      "spearman_agg_g_vs_error": 0.8114255446253594
     },
     {
       "regime": "iid",
       "split": "DEV",
       "n_per_context": 5000,
-      "n_contexts": 30,
-      "auroc_agg_g": 0.9147727272727273,
-      "spearman_agg_g_vs_error": 0.9242919510951135
+      "n_contexts": 40,
+      "auroc_agg_g": 0.9233333333333333,
+      "spearman_agg_g_vs_error": 0.8851549994055451
     },
     {
       "regime": "iid",
       "split": "DEV",
       "n_per_context": 10000,
-      "n_contexts": 30,
-      "auroc_agg_g": 0.9090909090909091,
-      "spearman_agg_g_vs_error": 0.9721882991719725
+      "n_contexts": 40,
+      "auroc_agg_g": 0.9199999999999999,
+      "spearman_agg_g_vs_error": 0.9431163444825261
     }
   ],
   "low_n_health": {

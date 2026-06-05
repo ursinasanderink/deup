@@ -7,14 +7,15 @@ $\text{agg\_g}(c) = \frac{1}{N_c}\sum_{i \in c} g(x_i)$. **That aggregate is onl
 trustworthy under specific conditions**, and silently exposing
 `context_uncertainty = mean(g)` without a guard is a trap.
 
-## The aggregation N / i.i.d. law (Finding 1)
+## The aggregation N / i.i.d. law (Finding 1; Sanderink, 2026)
 
 `mean(g)` over a context is a *consistent* estimator of the mean context error — but
 only as $N \to \text{large}$ **and** only if the within-context errors are
 exchangeable (i.i.d.). With small $N$ and temporal-regime dependence, the estimator's
-variance and bias swamp the signal.
+variance and bias swamp the signal (Sanderink, 2026, Finding 1).
 
-Documented empirical reference points (orientation, **not** a promise for your data):
+Documented empirical reference points from Sanderink (2026) (orientation, **not** a
+promise for your data):
 
 | Regime | N per context | i.i.d.? | AUROC(agg_g, bad context) |
 |---|---|---|---|
@@ -47,10 +48,10 @@ from deup.diagnostics import AggregationReliability
 labels, mean_g, verdict = AggregationReliability().aggregate(g, groups)
 ```
 
-## The remedy for low-N / non-i.i.d.: `HealthIndex` (Finding 2)
+## The remedy for low-N / non-i.i.d.: `HealthIndex` (Finding 2; Sanderink, 2026)
 
 When aggregated raw `g` fails, a **composite health index** that fuses
-*complementary* signals recovers context-level detection:
+*complementary* signals recovers context-level detection (Sanderink, 2026, Finding 2):
 
 $$
 H(c) = f\big(\text{realized\_efficacy}(c),\; \text{feature\_drift}(c),\;
@@ -92,14 +93,17 @@ already saturates and the composite is unnecessary.
 
 ## Empirical N-sweep (benchmark)
 
-The [N-sweep benchmark](benchmarks.md) reproduces Finding 1 on controlled synthetic
-data: AUROC(agg_g) rises to **≈0.96** at high N (i.i.d.), while low-N autocorrelated
-contexts stay near-chance and **HealthIndex** recovers detection.
+The [N-sweep benchmark](benchmarks.md) reproduces Finding 1 (Sanderink, 2026) on
+controlled synthetic data: AUROC(agg_g) rises to **≈0.96** at high N (i.i.d.), while
+low-N autocorrelated contexts stay near-chance and **HealthIndex** recovers detection.
 
 ![N-sweep](assets/n_sweep.png)
 
 ## Reference
 
-For optional background on cross-sectional ranking extensions and aggregation
-reliability in finance, see [arXiv:2603.13252](https://arxiv.org/abs/2603.13252).
-The core DEUP method remains Lahlou et al. (2023).
+Sanderink, U. (2026) 'When Alpha Breaks: Two-Level Uncertainty for Safe Deployment of
+Cross-Sectional Stock Rankers', *arXiv preprint* arXiv:2603.13252. Available at:
+[https://arxiv.org/pdf/2603.13252](https://arxiv.org/pdf/2603.13252) (Accessed: 4 June
+2026).
+
+The core DEUP method remains Lahlou *et al.* (2023).

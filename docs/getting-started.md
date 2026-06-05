@@ -70,7 +70,7 @@ pred, unc = model.predict(X_test, return_uncertainty=True)
 ## Cross-sectional ranking
 
 Use :class:`~deup.estimators.DEUPRanker` — rank loss, walk-forward CV, and rank-geometry
-residualization ON by default (Finding 3):
+residualization ON by default (Sanderink, 2026, Finding 3):
 
 ```python
 from deup import DEUPRanker

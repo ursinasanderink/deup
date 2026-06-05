@@ -3,7 +3,7 @@
 ``CrossSectionalDEUP`` wires :class:`~deup.estimators.DEUPRanker` with
 :class:`~deup.splitters.PurgedWalkForward`, rank-geometry residualization,
 vol/breadth/regime feature columns, and a default :class:`~deup.diagnostics.HealthIndex`
-for context-level gating in the low-N / non-i.i.d. regime (Finding 2).
+for context-level gating in the low-N / non-i.i.d. regime (Sanderink, 2026, Finding 2).
 """
 
 from __future__ import annotations

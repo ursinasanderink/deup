@@ -57,7 +57,9 @@ health = model.health_report(test_df)
 ## Attribution
 
 DEUP the *method* is due to Lahlou, Jain, Nekoei, Butoi, Bertin, Rector-Brooks,
-Korablyov, and Bengio (2023, TMLR). Please cite the original paper and this software
+Korablyov, and Bengio (2023, TMLR). Cross-sectional ranking, aggregation reliability,
+and two-level deployment diagnostics follow Sanderink (2026). Please cite the original
+DEUP paper, that work where relevant, and this software
 ([`CITATION.cff`](https://github.com/ursinasanderink/deup/blob/main/CITATION.cff)).
 
 ## Status

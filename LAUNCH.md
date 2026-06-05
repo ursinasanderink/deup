@@ -38,7 +38,10 @@ Docs: https://ursinasanderink.github.io/deup/
 Repo: https://github.com/ursinasanderink/deup
 
 **Credit:** DEUP the method is due to Lahlou, Jain, Nekoei, Butoi, Bertin, Rector-Brooks,
-Korablyov, and Bengio (2023). This package is an independent open-source implementation
-and extension for tabular and time-series workflows.
+Korablyov, and Bengio (2023). Cross-sectional ranking and aggregation-reliability
+diagnostics follow Sanderink (2026, *When Alpha Breaks*). This package is an
+independent open-source implementation and extension for tabular and time-series
+workflows.
 
-If you use it in research, please cite both the software (`CITATION.cff`) and the original paper.
+If you use it in research, please cite the software (`CITATION.cff`), Lahlou *et al.*
+(2023), and Sanderink (2026) where the finance/ranking diagnostics apply.

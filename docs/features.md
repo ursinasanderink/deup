@@ -60,7 +60,7 @@ DensityFeature(method="knn", k=5)
 DensityFeature(method="kde", bandwidth=1.0)
 ```
 
-!!! warning "Finding 3"
+!!! warning "Finding 3 (Sanderink, 2026)"
     Density can be **informative null** in homogeneous tabular panels. Ablate with
     `FeaturePipeline` column importances or drop if $\Delta\rho < 0.005$.
 

@@ -1,5 +1,8 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite both the software and the original DEUP paper."
+message: >-
+  If you use this software, please cite the software, Lahlou et al. (2023) for the DEUP
+  method, and Sanderink (2026) for cross-sectional ranking / aggregation-reliability
+  extensions implemented here.
 title: "deup: Direct Epistemic Uncertainty Prediction"
 abstract: >-
   A scikit-learn-compatible implementation of Direct Epistemic Uncertainty
@@ -40,3 +43,12 @@ references:
     journal: "Transactions on Machine Learning Research"
     year: 2023
     url: "https://openreview.net/forum?id=eGLdVRvvfQ"
+  - type: article
+    title: "When Alpha Breaks: Two-Level Uncertainty for Safe Deployment of Cross-Sectional Stock Rankers"
+    authors:
+      - family-names: Sanderink
+        given-names: Ursina
+    year: 2026
+    month: 2
+    doi: 10.48550/arXiv.2603.13252
+    url: "https://arxiv.org/pdf/2603.13252"

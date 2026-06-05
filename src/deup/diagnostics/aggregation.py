@@ -6,8 +6,8 @@ error -- but only as ``N -> large`` and only if the within-context errors are
 exchangeable. With small N and temporal-regime dependence, the estimator's variance
 and bias swamp the signal.
 
-Empirical reference points (Sanderink, 2026), to be read as orientation, **not** as a
-hard promise for a user's data:
+Empirical reference points (Sanderink, 2026, *When Alpha Breaks*), to be read as
+orientation, **not** as a hard promise for a user's data:
 
     AUROC(agg_g, bad context) ~ 0.55  at N ~ 50  (non-i.i.d. finance cross-sections)
     AUROC(agg_g, bad context) ~ 0.955 at N ~ 10,000 (i.i.d. vision batches)

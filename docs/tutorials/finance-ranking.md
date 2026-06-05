@@ -42,10 +42,10 @@ interval.lower, interval.upper
 
 Use a calibration panel the model did **not** see during `fit`.
 
-## Context-level health (Finding 2)
+## Context-level health (Finding 2; Sanderink, 2026)
 
 Do **not** rely on `mean(g)` per day at N≈50 — see
-[Aggregation reliability](../reliability.md).
+[Aggregation reliability](../reliability.md) (Sanderink, 2026, Finding 1).
 
 ```python
 report = model.health_report(test_panel)
