@@ -53,11 +53,18 @@ report.health    # per-date score in [0, 1]
 report.gate      # True = trust / trade this date
 ```
 
-## Migrating from thesis code
+## Walk-forward on pre-computed residuals
 
-If you already have enriched walk-forward residuals, use
-[`walkforward_g_on_enriched`](../migration.md) for drop-in parity with
-`train_g_walk_forward`.
+If you already have walk-forward scores and realized rank losses in a panel (Step 0
+done elsewhere), you can train only the error predictor `g`:
+
+```python
+from deup.domains.finance_walkforward import walkforward_g_on_enriched
+
+preds, diagnostics = walkforward_g_on_enriched(enriched_df, horizons=[20])
+```
+
+See the API reference for `walkforward_g_on_enriched`.
 
 ## Next
 

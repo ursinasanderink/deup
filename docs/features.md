@@ -50,7 +50,7 @@ print(phi_train.shape, phi_test.shape)  # (500, 8+1+1+1), (50, ...)
 ### DensityFeature
 
 ```python
-# Diagonal Gaussian — matches thesis GaussianDensity.log_prob (Lee et al. 2018)
+# Diagonal Gaussian — same formulation as Lee et al. (2018) Mahalanobis OOD score
 DensityFeature(method="mahalanobis")
 
 # k-NN distance proxy: log q ≈ -log(d_k + ε)

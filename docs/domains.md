@@ -33,6 +33,16 @@ Defaults wired in:
 
 Requires ``pip install "deup[finance]"`` (pandas).
 
+### Pre-computed walk-forward residuals
+
+If your primary model already produced walk-forward scores and rank losses:
+
+```python
+from deup.domains.finance_walkforward import walkforward_g_on_enriched
+
+preds, diag = walkforward_g_on_enriched(enriched_df, horizons=[20])
+```
+
 ## Generic tabular
 
 ```python

@@ -2,33 +2,34 @@
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-06-05
+
 ### Added
 
-- **Documentation (P13):** five-axis conceptual guide, four tutorials (tabular, finance,
-  classification+conformal, active learning), README comparison table, CI tutorial smoke
-  tests + `mkdocs build --strict` in CI.
-- **Thesis migration (P11):** `walkforward_g_on_enriched`, `MIGRATION.md`, parity script
-  (`scripts/parity_thesis_finance.py`); exact match on Ch13 v3 H=20 (max |Δg| = 0).
-- **Benchmark suite (P12):** N-sweep + figure, regression comparison (DEUP vs
-  ensemble/conformal/Laplace), CIFAR proxy, finance walk-forward; committed results.
+- **Community & release (P14):** `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, issue/PR
+  templates, `LAUNCH.md` draft, release workflow smoke-install + dry-run dispatch.
+
+### Changed
+
+- Public docs no longer assume private thesis context; migration page removed from site nav.
+- `RELEASING.md` expanded with troubleshooting for early failed `v0.1.0` deploys.
 
 ## [0.3.0] — 2026-06-05
 
 ### Added
 
+- **Documentation (P13):** five-axis conceptual guide, four tutorials (tabular, finance,
+  classification+conformal, active learning), README comparison table, CI tutorial smoke
+  tests + `mkdocs build --strict` in CI.
+- **Walk-forward finance helper:** `walkforward_g_on_enriched` for pre-computed residual panels.
+- **Benchmark suite (P12):** N-sweep + figure, regression comparison (DEUP vs
+  ensemble/conformal/Laplace), CIFAR proxy, finance walk-forward; committed results.
+
+### Added (0.3.0 core)
+
 - **Reliability diagnostics** (`deup.diagnostics`): `AggregationReliability` /
-  `should_trust_aggregate` (Finding 1) and pluggable `HealthIndex` (Finding 2).
-- **Domain presets** (`deup.domains`):
-  - `CrossSectionalDEUP` — finance flagship: `PurgedWalkForward`, rank
-    residualization, vol/breadth/regime g-features, `HealthIndex`, multi-horizon
-    targets, panel DataFrame API.
-  - `TabularDEUP` — KFold + raw X + Mahalanobis density.
-  - `VisionDEUP` — embedding → density + variance for OOD classification.
-- Docs: `reliability.md`, `domains.md`, API pages.
-
-### Changed
-
-- PyPI release bundles P5–P10 features (feature builders through domain presets).
+  `should_trust_aggregate` and pluggable `HealthIndex`.
+- **Domain presets** (`deup.domains`): `CrossSectionalDEUP`, `TabularDEUP`, `VisionDEUP`.
 
 ## [0.2.0] — 2026-06-05
 
@@ -36,11 +37,10 @@
 
 - **`DEUPClassifier`** — classification with log-loss / Brier OOF errors + `predict_proba`
 - **`DEUPRanker`** — cross-sectional ranking; `loss="rank"`, `PurgedWalkForward` default,
-  rank-geometry residualization ON by default (Finding 3)
+  rank-geometry residualization ON by default
 - **`acquire(pool, k)`** — active-learning hook (top-k by epistemic uncertainty)
 - Refactored **`DEUPRegressor`** onto `ErrorEstimator` + optional `features` /
   `aleatoric` / `decompose`
-- Docs updated for all three estimators and `acquire`
 
 ## [0.1.1] — 2026-06-04
 
@@ -48,36 +48,22 @@ First release published to PyPI.
 
 ### Fixed
 
-- `OOFErrorCollector` now supports multiclass `predict_proba` targets (previously
-  only binary worked; multiclass stored 2-D probabilities and crashed).
-- Guard against rows assigned to multiple test folds (e.g. repeated CV): a warning
-  is raised and one error per row is kept, preserving honest OOF targets.
-- Validate `groups` length against `n_rows` and the loss output length.
+- `OOFErrorCollector` multiclass `predict_proba` support and overlap-fold guard.
 
 ### Added
 
-- Research-grade docstrings documenting the "g trained on a slightly smaller f"
-  refit assumption (DEUP Algorithm 2) plus a "How it works" docs section.
+- Research-grade docstrings documenting the OOF refit assumption (DEUP Algorithm 2).
 
 ## [0.1.0] — 2026-06-04
 
-First public release.
+First public release (PyPI publish failed — trusted publishing not yet configured;
+superseded by v0.1.1).
 
 ### Added
 
-- `DEUPRegressor` — sklearn-compatible wrapper with `predict(..., return_uncertainty=True)`
-- Leakage-correct `OOFErrorCollector` (DEUP Algorithm 2 / K-fold OOF errors)
-- Splitters: `PurgedWalkForward`, re-export `KFold` / `TimeSeriesSplit`
-- Loss registry: `squared`, `absolute`, `logloss`, `brier`, `pinball`, `rank`
-- Target transforms: `log`, `asinh`, `none` for error-predictor training
-- Benchmark: DEUP vs ensemble vs conformal on California housing
-- MkDocs documentation site
-- 54+ unit tests including parity-exact OOF and leakage gate
+- `DEUPRegressor`, `OOFErrorCollector`, splitters, loss registry, California housing benchmark, MkDocs site.
 
-### Notes
-
-- Aleatoric decomposition (`ê = max(0, g - a)`), conformal intervals, and
-  `DEUPClassifier` / `DEUPRanker` are planned for v0.2.
-
+[0.3.1]: https://github.com/ursinasanderink/deup/releases/tag/v0.3.1
+[0.3.0]: https://github.com/ursinasanderink/deup/releases/tag/v0.3.0
 [0.1.1]: https://github.com/ursinasanderink/deup/releases/tag/v0.1.1
 [0.1.0]: https://github.com/ursinasanderink/deup/releases/tag/v0.1.0

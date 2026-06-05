@@ -1,0 +1,37 @@
+name: Bug report
+description: Something is broken or incorrect
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Include expected vs actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        ```python
+        from deup import DEUPRegressor
+        ...
+        ```
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: deup version
+      placeholder: pip show deup
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Python / OS
+      placeholder: "3.11, macOS 14"
+    validations:
+      required: true

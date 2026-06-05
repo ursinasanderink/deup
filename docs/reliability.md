@@ -100,5 +100,6 @@ contexts stay near-chance and **HealthIndex** recovers detection.
 
 ## Reference
 
-Sanderink (2026), *When Alpha Breaks: Two-Level Uncertainty for Safe Deployment of
-Cross-Sectional Stock Rankers*, [arXiv:2603.13252](https://arxiv.org/abs/2603.13252).
+For the cross-sectional ranking extension and two-level deployment motivation, see
+Sanderink (2026), [arXiv:2603.13252](https://arxiv.org/abs/2603.13252) — optional
+background for finance users; the core DEUP method remains Lahlou et al. (2023).

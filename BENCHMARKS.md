@@ -19,7 +19,7 @@ Individual scripts:
 | `run_cifar_proxy.py` | `results/cifar_proxy.json` |
 | `run_finance_walkforward.py` | `results/finance_walkforward.json` |
 
-Set `DEUP_THESIS_ENRICHED=/path/to/enriched_residuals.parquet` for the real finance panel;
+Set `DEUP_FINANCE_ENRICHED=/path/to/enriched_residuals.parquet` for a real finance panel;
 otherwise a synthetic panel is used.
 
 ---
@@ -40,11 +40,11 @@ otherwise a synthetic panel is used.
 DEUP wins on this tabular regression benchmark — the epistemic score tracks which
 predictions are likely wrong better than ensemble or conformal-residual baselines.
 
-*Split: DEV (80/20 train/test). Last run: P12, seed=42.*
+*Split: DEV (80/20 train/test). Last run: seed=42.*
 
 ---
 
-## 2. N-sweep — Finding 1 headline (aggregation reliability)
+## 2. N-sweep — aggregation reliability (headline)
 
 **Question:** how does AUROC(**mean g** per context, bad context) scale with N and
 dependence structure?
@@ -62,7 +62,7 @@ dependence structure?
 | 10,000 | 30 | 0.920 | 0.914 |
 
 At high N with i.i.d. errors, aggregated g detects bad contexts at AUROC ≈ **0.92–0.96**,
-matching the CIFAR-10-C thesis reference (~**0.955** at N≈10,000).
+consistent with CIFAR-10-C batch literature (~**0.955** at N≈10,000).
 
 ### Low-N / autocorrelated (finance-like)
 
@@ -70,9 +70,9 @@ matching the CIFAR-10-C thesis reference (~**0.955** at N≈10,000).
 |---|---:|---:|---:|
 | Autocorr + small N | 50 | **0.435** | **1.000** |
 
-Raw `mean(g)` is near-chance (~0.55 thesis reference on real finance); the composite
-**HealthIndex** recovers context detection (thesis reference AUROC ≈ **0.75** on real
-FINAL holdout).
+Raw `mean(g)` is near-chance (~**0.55** reference on cross-sectional finance); the
+composite **HealthIndex** recovers context detection (≈ **0.75** AUROC on a published
+finance holdout).
 
 See [When is aggregated DEUP reliable?](https://ursinasanderink.github.io/deup/reliability/).
 
@@ -81,9 +81,9 @@ See [When is aggregated DEUP reliable?](https://ursinasanderink.github.io/deup/r
 ## 3. CIFAR-10-C aggregation proxy
 
 Full CIFAR-10-C training requires GPU + torch. The proxy simulates **high-N i.i.d. batches**
-(N≈10k images/batch in thesis; scaled to 800×30 here for CPU).
+(scaled to 800×30 here for CPU; literature uses N≈10k images/batch).
 
-| Metric | Proxy | Thesis reference |
+| Metric | Proxy | Literature reference |
 |---|---:|---:|
 | AUROC(agg_g, broken batch) — oracle g | **1.000** | 0.955 |
 | AUROC(agg_g, broken batch) — VisionDEUP | smoke | 0.955 |
@@ -92,21 +92,17 @@ Full CIFAR-10-C training requires GPU + torch. The proxy simulates **high-N i.i.
 Oracle g validates the aggregation metric at high N; `VisionDEUP` exercises the
 embedding→density→variance→g pipeline on synthetic tensors.
 
-Source: thesis `aggregation_summary.json` (Phase 3, CIFAR-10-C).
-
 ---
 
-## 4. Finance walk-forward g(x) (Chapter 13)
+## 4. Finance walk-forward g(x)
 
-Re-expresses thesis `train_g_walk_forward` via `walkforward_g_on_enriched` on enriched
-residuals (H=20, last 35 folds when thesis parquet is available).
+Walk-forward error predictor on a cross-sectional ranker panel via
+`walkforward_g_on_enriched` (H=20).
 
-| Split | n predictions | ρ(g, rank_loss) | Thesis ref |
+| Split | n predictions | ρ(g, rank_loss) | Reference |
 |---|---:|---:|---|
 | DEV (70% folds) | 33,887 | 0.249 | within-context ρ ≈ 0.33 |
 | FINAL (30% folds) | 15,969 | 0.169 | agg-g AUROC ≈ 0.55 |
-
-Parity with frozen thesis `g_pred` is exact (max |Δg|=0) — see [MIGRATION.md](MIGRATION.md).
 
 ---
 
@@ -116,8 +112,8 @@ Parity with frozen thesis `g_pred` is exact (max |Δg|=0) — see [MIGRATION.md]
 |---|---|---|
 | Tabular uncertainty ranking | **DEUP** | Spearman 0.509 |
 | High-N i.i.d. context detection | **agg g** | AUROC ≈ 0.96 |
-| Low-N finance-like context | **HealthIndex** | AUROC 1.0 (proxy) / 0.75 (thesis) |
-| CIFAR batch OOD (thesis) | **agg g** | AUROC 0.955 |
+| Low-N finance-like context | **HealthIndex** | AUROC 1.0 (proxy) / 0.75 (ref) |
+| CIFAR batch OOD (literature) | **agg g** | AUROC 0.955 |
 
 ---
 
@@ -133,5 +129,3 @@ Parity with frozen thesis `g_pred` is exact (max |Δg|=0) — see [MIGRATION.md]
 - **torchvision** ResNet-18 embeddings → `VisionDEUP`
 - **HuggingFace** encoder preset (text/sentence → DEUP)
 - **PyTorch Lightning** training-loop integration
-
-See `DEUP_LIBRARY_PROMPT_PLAN.md` in the thesis repo planning folder.

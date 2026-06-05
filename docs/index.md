@@ -6,7 +6,7 @@ DEUP (Lahlou et al., 2023) estimates *epistemic* uncertainty by training a secon
 **error predictor** on your model's **out-of-sample** errors. This library provides a
 maintained, installable, scikit-learn-compatible implementation with first-class
 support for time-series, cross-sectional ranking, conformal intervals, and
-research-grade reliability diagnostics.
+aggregation-reliability diagnostics.
 
 ```bash
 pip install deup
@@ -38,7 +38,7 @@ health = model.health_report(test_df)
 - **Leakage-correct by default** — out-of-fold errors (Algorithm 2), purged walk-forward
 - **Time-series & ranking** — `DEUPRanker`, rank-geometry residualization, `HealthIndex`
 - **Calibrated intervals** — split-conformal `predict_interval()` + MAPIE interop
-- **Benchmarked** — DEUP beats ensembles/conformal on tabular; N-sweep validates Finding 1
+- **Benchmarked** — DEUP beats ensembles/conformal on tabular; N-sweep validates aggregation guards
 
 ## Documentation map
 
@@ -50,16 +50,17 @@ health = model.health_report(test_df)
 | Math & algorithms | [Theory & math](theory.md) |
 | When is agg-g reliable? | [Aggregation reliability](reliability.md) |
 | Finance / vision presets | [Domain presets](domains.md) |
-| Thesis migration | [Migrating from thesis](migration.md) |
 | Benchmarks & N-sweep | [Benchmarks](benchmarks.md) |
 
 ## Attribution
 
 DEUP the *method* is due to Lahlou, Jain, Nekoei, Butoi, Bertin, Rector-Brooks,
-Korablyov, and Bengio (2023, TMLR). Ranking adaptations and two-level deployment
-build on Sanderink (2026). Please cite both papers and this software (`CITATION.cff`).
+Korablyov, and Bengio (2023, TMLR). Please cite the original paper and this software
+([`CITATION.cff`](https://github.com/ursinasanderink/deup/blob/main/CITATION.cff)).
 
 ## Status
 
-**v0.3** — estimators, features, conformal calibration, diagnostics (Findings 1–2),
-domain presets, thesis parity, benchmark suite, tutorials. See [CHANGELOG](https://github.com/ursinasanderink/deup/blob/main/CHANGELOG.md).
+**v0.3.1** — estimators, conformal calibration, reliability diagnostics, domain presets,
+benchmark suite, tutorials. See [CHANGELOG](https://github.com/ursinasanderink/deup/blob/main/CHANGELOG.md).
+
+Contributions welcome — see [CONTRIBUTING.md](https://github.com/ursinasanderink/deup/blob/main/CONTRIBUTING.md).

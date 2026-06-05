@@ -76,7 +76,7 @@ report = coupling_retention_report(g_values, score, loss, groups=dates)
 print(report.coupling_before, report.coupling_after, report.retention)
 ```
 
-!!! note "Thesis finding"
+!!! note "Empirical motivation"
     Residualization decoupled the signal (per-date $\rho(\hat{e}, |score|)$:
     $0.616 \to 0.317$) while **retaining ~92.5%** of the loss association. This is
     **off by default** and **on in `DEUPRanker`** (P7).

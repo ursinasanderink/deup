@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest an improvement or new preset
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What uncertainty workflow are you trying to support?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      options:
+        - Tabular / sklearn
+        - Time-series / finance panel
+        - Vision / embeddings
+        - Deep learning / PyTorch
+        - Other
+    validations:
+      required: true

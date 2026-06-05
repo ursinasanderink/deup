@@ -12,8 +12,6 @@
 
 ::: deup.domains.finance_walkforward.available_finance_features
 
-::: deup.domains.finance_walkforward.THESIS_G_PARAMS
-
 ## Tabular
 
 ::: deup.domains.tabular.TabularDEUP

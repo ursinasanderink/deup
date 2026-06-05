@@ -13,7 +13,7 @@ with the model you already use.
 **Method credit:** DEUP is due to
 [Lahlou et al., 2023 (TMLR)](https://openreview.net/forum?id=eGLdVRvvfQ). This package
 is a maintained, benchmarked, scikit-learn-compatible implementation with time-series /
-cross-sectional finance support and reliability diagnostics from Sanderink (2026).
+cross-sectional finance support and aggregation-reliability diagnostics.
 
 Repository: <https://github.com/ursinasanderink/deup> · Docs: <https://ursinasanderink.github.io/deup/>
 
@@ -74,16 +74,12 @@ Full results: [Benchmarks](https://ursinasanderink.github.io/deup/benchmarks/).
 | Five-axis guide | [docs/concepts](https://ursinasanderink.github.io/deup/concepts/) |
 | Tutorials | [tabular](https://ursinasanderink.github.io/deup/tutorials/tabular-regression/) · [finance](https://ursinasanderink.github.io/deup/tutorials/finance-ranking/) · [conformal](https://ursinasanderink.github.io/deup/tutorials/classification-conformal/) · [active learning](https://ursinasanderink.github.io/deup/tutorials/active-learning/) |
 | When is agg-g reliable? | [reliability](https://ursinasanderink.github.io/deup/reliability/) |
-| Thesis migration | [migration](https://ursinasanderink.github.io/deup/migration/) |
+| Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 
 ## Status
 
-**v0.3** — full stack through P13 docs: estimators, conformal calibration, reliability
-diagnostics, domain presets, thesis parity, benchmarks, tutorials (CI-tested).
-
-**Next:** P14 release polish (CONTRIBUTING, PyPI v0.3.x, community templates).
-
-**Planned presets:** XGBoost/CatBoost tabular (~1 day); torchvision ResNet-18 → `VisionDEUP`.
+**v0.3.1** — full stack: estimators, conformal calibration, reliability diagnostics,
+domain presets, benchmarks, tutorials (CI-tested).
 
 ## Citing
 

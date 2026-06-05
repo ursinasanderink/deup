@@ -209,7 +209,7 @@ pre-fit estimator) if you want to disable the final refit.
 
 **Included:** estimators, conformal calibration, aggregation-reliability diagnostics
 (`AggregationReliability`, `HealthIndex`), domain presets (`CrossSectionalDEUP`,
-`TabularDEUP`, `VisionDEUP`), thesis parity migration, benchmark suite, and
+`TabularDEUP`, `VisionDEUP`), benchmark suite, and
 [step-by-step tutorials](tutorials/tabular-regression.md).
 
 Configure any use case via the [five-axis guide](concepts.md).

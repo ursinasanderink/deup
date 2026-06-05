@@ -26,14 +26,16 @@ in the repository root (tables are committed from the last benchmark run).
 
 ---
 
-## N-sweep — Finding 1 (headline)
+## N-sweep — aggregation reliability (headline)
 
 ![N-sweep AUROC vs context size](assets/n_sweep.png)
 
-**i.i.d. contexts:** AUROC(agg_g) rises to **≈0.96** at N≈1,000–10,000 (CIFAR thesis ref ≈0.955).
+**i.i.d. contexts:** AUROC(agg_g) rises to **≈0.96** at N≈1,000–10,000 (literature
+reference on CIFAR-10-C batches: ≈**0.955**).
 
-**Low-N autocorrelated:** AUROC(agg_g)≈**0.43** (finance ref ≈0.55); **HealthIndex** recovers
-to AUROC≈**1.0** on the synthetic proxy (thesis ref ≈0.75 on real FINAL holdout).
+**Low-N autocorrelated:** AUROC(agg_g)≈**0.43** (cross-sectional finance reference ≈0.55);
+**HealthIndex** recovers to AUROC≈**1.0** on the synthetic proxy (≈**0.75** on a real
+finance holdout in published evaluation).
 
 Details: [Aggregation reliability](reliability.md).
 
@@ -41,9 +43,10 @@ Details: [Aggregation reliability](reliability.md).
 
 ## CIFAR & finance
 
-- **CIFAR proxy:** oracle agg-g AUROC **1.0** on high-N i.i.d. batch simulation (thesis **0.955**)
-- **Finance walk-forward:** ρ(g, rank_loss)=**0.25** DEV / **0.17** FINAL on Ch13 v3 subset;
-  exact parity with frozen thesis `g_pred` documented in [Migrating from thesis](migration.md)
+- **CIFAR proxy:** oracle agg-g AUROC **1.0** on high-N i.i.d. batch simulation
+  (literature reference **0.955** on CIFAR-10-C)
+- **Finance walk-forward:** ρ(g, rank_loss)=**0.25** DEV / **0.17** FINAL on a
+  cross-sectional ranker panel; see `benchmarks/run_finance_walkforward.py`
 
 ---
 
