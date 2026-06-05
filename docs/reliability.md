@@ -103,7 +103,6 @@ low-N autocorrelated contexts stay near-chance and **HealthIndex** recovers dete
 
 Sanderink, U. (2026) 'When Alpha Breaks: Two-Level Uncertainty for Safe Deployment of
 Cross-Sectional Stock Rankers', *arXiv preprint* arXiv:2603.13252. Available at:
-[https://arxiv.org/pdf/2603.13252](https://arxiv.org/pdf/2603.13252) (Accessed: 4 June
-2026).
+[https://arxiv.org/pdf/2603.13252](https://arxiv.org/pdf/2603.13252).
 
 The core DEUP method remains Lahlou *et al.* (2023).

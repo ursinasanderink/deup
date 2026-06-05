@@ -1,5 +1,7 @@
 # deup
 
+![deup library overview](deuplibimage.png)
+
 **Direct Epistemic Uncertainty Prediction (DEUP) for any scikit-learn model — with first-class, leakage-correct time-series support.**
 
 [![PyPI](https://img.shields.io/pypi/v/deup)](https://pypi.org/project/deup/)
@@ -107,7 +109,7 @@ reliability extensions:
 
 > Sanderink, U. (2026) 'When Alpha Breaks: Two-Level Uncertainty for Safe Deployment of
 > Cross-Sectional Stock Rankers', *arXiv preprint* arXiv:2603.13252. Available at:
-> https://arxiv.org/pdf/2603.13252 (Accessed: 4 June 2026).
+> https://arxiv.org/pdf/2603.13252
 
 ## License
 

@@ -191,8 +191,7 @@ that work motivate the library design:
   [arXiv:2102.08501](https://arxiv.org/abs/2102.08501)
 - Sanderink, U. (2026) 'When Alpha Breaks: Two-Level Uncertainty for Safe Deployment
   of Cross-Sectional Stock Rankers', *arXiv preprint* arXiv:2603.13252. Available at:
-  [https://arxiv.org/pdf/2603.13252](https://arxiv.org/pdf/2603.13252) (Accessed: 4 June
-  2026).
+  [https://arxiv.org/pdf/2603.13252](https://arxiv.org/pdf/2603.13252).
 - Kotelevskii *et al.* (2025a). Bregman-divergence excess risk (formal cover for DEUP).
 - Lee *et al.* (2018). Mahalanobis OOD score (diagonal Gaussian special case).
 - Hüllermeier & Waegeman (2019). Aleatoric vs epistemic uncertainty survey.
