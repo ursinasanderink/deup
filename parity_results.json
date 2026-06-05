@@ -1,0 +1,80 @@
+{
+  "enriched_path": "/Users/ursinasanderink/Downloads/AI Stock Forecast/evaluation_outputs/chapter13_v3/enriched_residuals_tabular_lgb.parquet",
+  "frozen_g_path": "/Users/ursinasanderink/Downloads/AI Stock Forecast/evaluation_outputs/chapter13_v3/g_predictions_rank.parquet",
+  "horizon": 20,
+  "min_train_folds": 20,
+  "library_diagnostics_legacy": {
+    "features": [
+      "score",
+      "abs_score",
+      "vol_20d",
+      "vol_60d",
+      "mom_1m",
+      "adv_20d",
+      "vix_percentile_252d",
+      "market_regime_enc",
+      "market_vol_21d",
+      "market_return_21d",
+      "cross_sectional_rank"
+    ],
+    "fold_sort": "string",
+    "20": {
+      "n_rows": 182046,
+      "n_folds": 99,
+      "spearman_rho": 0.1884741536666496
+    }
+  },
+  "library_diagnostics_numeric": {
+    "features": [
+      "score",
+      "abs_score",
+      "vol_20d",
+      "vol_60d",
+      "mom_1m",
+      "adv_20d",
+      "vix_percentile_252d",
+      "market_regime_enc",
+      "market_vol_21d",
+      "market_return_21d",
+      "cross_sectional_rank"
+    ],
+    "fold_sort": "numeric",
+    "20": {
+      "n_rows": 186874,
+      "n_folds": 99,
+      "spearman_rho": 0.1917319247271949
+    }
+  },
+  "comparisons": [
+    {
+      "comparison": "library_legacy_vs_frozen",
+      "label": "library_legacy_vs_frozen",
+      "n_merged": 182046,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "spearman_g_a": 0.1884741536666496,
+      "spearman_g_b": 0.1884741536666496,
+      "spearman_cross": 0.9999999999999999
+    },
+    {
+      "comparison": "thesis_rerun_vs_library_legacy",
+      "label": "thesis_rerun_vs_library_legacy",
+      "n_merged": 182046,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "spearman_g_a": 0.1884741536666496,
+      "spearman_g_b": 0.1884741536666496,
+      "spearman_cross": 0.9999999999999999
+    },
+    {
+      "comparison": "thesis_rerun_vs_frozen",
+      "label": "thesis_rerun_vs_frozen",
+      "n_merged": 182046,
+      "max_abs_diff": 0.0,
+      "mean_abs_diff": 0.0,
+      "spearman_g_a": 0.1884741536666496,
+      "spearman_g_b": 0.1884741536666496,
+      "spearman_cross": 0.9999999999999999
+    }
+  ]
+}

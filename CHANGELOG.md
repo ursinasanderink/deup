@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- **Thesis migration (P11):** `walkforward_g_on_enriched`, `MIGRATION.md`, parity script
+  (`scripts/parity_thesis_finance.py`); exact match on Ch13 v3 H=20 (max |Δg| = 0).
+
 ## [0.3.0] — 2026-06-05
 
 ### Added
