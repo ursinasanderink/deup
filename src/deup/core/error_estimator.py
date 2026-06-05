@@ -102,9 +102,7 @@ class ErrorEstimator(BaseEstimator):
                     raise ImportError(
                         'model="catboost" requires: pip install "deup[catboost]"'
                     ) from exc
-                return CatBoostRegressor(
-                    iterations=100, verbose=False, allow_writing_files=False
-                )
+                return CatBoostRegressor(iterations=100, verbose=False, allow_writing_files=False)
             raise ValueError(
                 f"Unknown model string: {self.model!r}. "
                 "Use 'lightgbm'/'lgbm', 'xgb', or 'catboost'."

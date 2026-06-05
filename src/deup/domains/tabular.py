@@ -119,9 +119,7 @@ class TabularDEUP:
         random_state: int | None = None,
     ) -> None:
         if base_model is None:
-            base_model = default_tabular_base_model(
-                backend, task=task, random_state=random_state
-            )
+            base_model = default_tabular_base_model(backend, task=task, random_state=random_state)
         if error_model is None:
             error_model = default_tabular_error_model(backend)
 
