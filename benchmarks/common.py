@@ -26,9 +26,7 @@ def write_json(name: str, payload: dict[str, Any]) -> Path:
     return out
 
 
-def spearman_unc_vs_sqerr(
-    unc: np.ndarray, y_true: np.ndarray, y_pred: np.ndarray
-) -> float:
+def spearman_unc_vs_sqerr(unc: np.ndarray, y_true: np.ndarray, y_pred: np.ndarray) -> float:
     realized = (y_true - y_pred) ** 2
     rho = spearmanr(unc, realized).statistic
     return float(rho) if rho is not None else float("nan")
